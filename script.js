@@ -12,15 +12,28 @@ const btnRoll = document.querySelector('.btn--roll');
 // Using get element by id
 const current0El = document.getElementById('current--0');
 const current1El = document.getElementById('current--1');
-score0.textContent = 0;
-score1.textContent = 0;
-diceEl.classList.add('hidden');
 
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+let scores, currentScore, activePlayer, playing;
+//Init function
+const init = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0.textContent = 0;
+  score1.textContent = 0;
 
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player1El.classList.remove('player--active');
+  player0El.classList.add('player--active');
+  diceEl.classList.add('hidden');
+};
+
+// Initialization the game
+init();
 // Game functionality implementaion
 //Roll Dice
 const switchPlayer = function () {
@@ -75,3 +88,6 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+// Btn New game to reset the game
+btnNew.addEventListener('click', init);
